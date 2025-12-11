@@ -10,7 +10,7 @@ SECRET_KEY = 'django-insecure-tu-clave-secreta-aqui-cambia-en-produccion'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '.elasticbeanstalk.com']
 
 # Application definition
 INSTALLED_APPS = [
@@ -20,21 +20,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'materias',  # Tu aplicación debe estar aquí
-    
+    'materias',
 ]
-
-# Base de datos SQLite (por defecto)
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ['RDS_DB_NAME'],
-        'USER': os.environ['RDS_USERNAME'],
-        'PASSWORD': os.environ['RDS_PASSWORD'],
-        'HOST': os.environ['RDS_HOSTNAME'],
-        'PORT': os.environ['RDS_PORT'],
-    }
-}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -67,9 +54,10 @@ TEMPLATES = [
 WSGI_APPLICATION = 'proyecto_materias.wsgi.application'
 
 # Database
-import os
+# https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 if 'RDS_DB_NAME' in os.environ:
+    # Configuración para AWS RDS (MySQL)
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.mysql',
@@ -81,6 +69,7 @@ if 'RDS_DB_NAME' in os.environ:
         }
     }
 else:
+    # Configuración para desarrollo local (SQLite)
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
@@ -112,9 +101,7 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = 'static/'
-
-# Para desarrollo, no necesitas STATIC_ROOT aún
-# STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATIC_ROOT = BASE_DIR / 'staticfiles'  # IMPORTANTE para AWS
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
