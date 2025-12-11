@@ -1,17 +1,21 @@
 import os
-from pathlib import Path
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+# Esto permitirá CUALQUIER dominio de Render
+ALLOWED_HOSTS = [
+    '.onrender.com',      # Permite cualquier subdominio .onrender.com
+    'localhost',
+    '127.0.0.1',
+]
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-tu-clave-secreta-aqui-cambia-en-produccion'
+# O mejor aún, para desarrollo/producción:
+if os.environ.get('RENDER'):
+    # En producción (Render)
+    ALLOWED_HOSTS = ['.onrender.com']
+else:
+    # En desarrollo local
+    ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '.elasticbeanstalk.com']
-
+    
 # Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',
