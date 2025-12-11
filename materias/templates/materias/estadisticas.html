@@ -1,0 +1,151 @@
+{% extends 'materias/base.html' %}
+
+{% block title %}Estadísticas{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <h2 class="mb-4">
+            <i class="bi bi-graph-up"></i> Estadísticas del Semestre
+        </h2>
+        
+        <div class="row">
+            <!-- Tarjetas de resumen -->
+            <div class="col-md-3 mb-4">
+                <div class="card text-white bg-primary">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Total Materias</h5>
+                        <p class="card-text display-4">{{ total_materias }}</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-3 mb-4">
+                <div class="card text-white bg-success">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Materias Activas</h5>
+                        <p class="card-text display-4">{{ materias_activas }}</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-3 mb-4">
+                <div class="card text-white bg-warning">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Materias Inactivas</h5>
+                        <p class="card-text display-4">{{ materias_inactivas }}</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-3 mb-4">
+                <div class="card text-white bg-info">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Semestre Actual</h5>
+                        {% if semestres %}
+                            <p class="card-text h4">{{ semestres.keys|first }}</p>
+                        {% else %}
+                            <p class="card-text h4">No hay datos</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Gráficos/Estadísticas por semestre -->
+        <div class="row">
+            <div class="col-md-6 mb-4">
+                <div class="card">
+                    <div class="card-header bg-secondary text-white">
+                        <h5 class="card-title mb-0">Materias por Semestre</h5>
+                    </div>
+                    <div class="card-body">
+                        {% if semestres %}
+                            <ul class="list-group">
+                                {% for semestre, cantidad in semestres.items %}
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    {{ semestre }}
+                                    <span class="badge bg-primary rounded-pill">{{ cantidad }}</span>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        {% else %}
+                            <p class="text-muted">No hay materias registradas por semestre.</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6 mb-4">
+                <div class="card">
+                    <div class="card-header bg-secondary text-white">
+                        <h5 class="card-title mb-0">Distribución por Dificultad</h5>
+                    </div>
+                    <div class="card-body">
+                        {% if dificultades %}
+                            <ul class="list-group">
+                                {% for dificultad, cantidad in dificultades.items %}
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    {{ dificultad }}
+                                    <span class="badge 
+                                        {% if dificultad == 'Muy Fácil' %}bg-success
+                                        {% elif dificultad == 'Fácil' %}bg-info
+                                        {% elif dificultad == 'Moderada' %}bg-primary
+                                        {% elif dificultad == 'Difícil' %}bg-warning
+                                        {% else %}bg-danger{% endif %} rounded-pill">
+                                        {{ cantidad }}
+                                    </span>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        {% else %}
+                            <p class="text-muted">No hay datos de dificultad registrados.</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Información adicional -->
+        <div class="card">
+            <div class="card-header bg-light">
+                <h5 class="card-title mb-0">Recomendaciones</h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="card bg-light mb-3">
+                            <div class="card-body">
+                                <h6 class="card-title">
+                                    <i class="bi bi-lightbulb text-warning"></i> Balance de Carga
+                                </h6>
+                                <p class="card-text small">Trata de equilibrar las materias según su dificultad.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card bg-light mb-3">
+                            <div class="card-body">
+                                <h6 class="card-title">
+                                    <i class="bi bi-clock text-primary"></i> Gestión del Tiempo
+                                </h6>
+                                <p class="card-text small">Considera los créditos al planificar tu tiempo de estudio.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card bg-light mb-3">
+                            <div class="card-body">
+                                <h6 class="card-title">
+                                    <i class="bi bi-calendar-check text-success"></i> Organización
+                                </h6>
+                                <p class="card-text small">Revisa regularmente tus materias y comentarios.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

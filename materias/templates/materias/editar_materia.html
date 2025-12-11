@@ -1,0 +1,78 @@
+{% extends 'materias/base.html' %}
+
+{% block title %}Editar Materia{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <div class="card border-0 shadow-sm">
+            <div class="card-header bg-white border-bottom py-3">
+                <h5 class="mb-0">
+                    <i class="bi bi-pencil text-warning"></i>
+                    Editar Materia
+                </h5>
+            </div>
+            
+            <div class="card-body p-4">
+                <form method="post">
+                    {% csrf_token %}
+                    
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label">Nombre *</label>
+                            {{ form.nombre }}
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Código *</label>
+                            {{ form.codigo }}
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Semestre *</label>
+                            {{ form.semestre }}
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Profesor *</label>
+                            {{ form.profesor }}
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Créditos *</label>
+                            {{ form.creditos }}
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Día *</label>
+                            {{ form.dia_clase }}
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Horario *</label>
+                            {{ form.horario }}
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Dificultad *</label>
+                            {{ form.dificultad }}
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-check mt-4">
+                                {{ form.activa }}
+                                <label class="form-check-label">Activa</label>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label">Comentarios</label>
+                            {{ form.comentarios }}
+                        </div>
+                    </div>
+                    
+                    <div class="d-flex justify-content-between mt-4 pt-3 border-top">
+                        <a href="{% url 'lista_materias' %}" class="btn btn-outline-secondary">
+                            Cancelar
+                        </a>
+                        <button type="submit" class="btn btn-warning">
+                            Actualizar
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

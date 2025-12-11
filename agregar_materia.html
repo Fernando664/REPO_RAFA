@@ -1,0 +1,71 @@
+{% extends 'materias/base.html' %}
+
+{% block content %}
+<div class="card p-4">
+    <h4 class="mb-4">Nueva Materia</h4>
+    
+    <form method="post">
+        {% csrf_token %}
+        
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label class="form-label">Nombre *</label>
+                {{ form.nombre }}
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Código *</label>
+                {{ form.codigo }}
+            </div>
+        </div>
+        
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label class="form-label">Semestre *</label>
+                {{ form.semestre }}
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Profesor *</label>
+                {{ form.profesor }}
+            </div>
+        </div>
+        
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <label class="form-label">Créditos *</label>
+                {{ form.creditos }}
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">Día *</label>
+                {{ form.dia_clase }}
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">Horario *</label>
+                {{ form.horario }}
+            </div>
+        </div>
+        
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label class="form-label">Dificultad *</label>
+                {{ form.dificultad }}
+            </div>
+            <div class="col-md-6">
+                <div class="form-check mt-4">
+                    {{ form.activa }}
+                    <label class="form-check-label">Activa</label>
+                </div>
+            </div>
+        </div>
+        
+        <div class="mb-4">
+            <label class="form-label">Comentarios</label>
+            {{ form.comentarios }}
+        </div>
+        
+        <div class="d-flex justify-content-between">
+            <a href="{% url 'lista_materias' %}" class="btn btn-secondary">Cancelar</a>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

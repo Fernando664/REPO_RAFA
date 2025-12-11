@@ -1,0 +1,34 @@
+{% extends 'materias/base.html' %}
+
+{% block content %}
+<div class="text-center mb-5">
+    <h2 class="mb-3">Sistema de Materias</h2>
+    <p class="text-muted">Gestión básica de materias del semestre</p>
+</div>
+
+<div class="row">
+    <div class="col-md-6 mb-3">
+        <div class="card p-4">
+            <h5>Agregar Materia</h5>
+            <p>Registra una nueva materia con sus detalles.</p>
+            <a href="{% url 'agregar_materia' %}" class="btn btn-primary">Nueva Materia</a>
+        </div>
+    </div>
+    <div class="col-md-6 mb-3">
+        <div class="card p-4">
+            <h5>Ver Materias</h5>
+            <p>Consulta todas las materias registradas.</p>
+            <a href="{% url 'lista_materias' %}" class="btn btn-outline-primary">Ver Lista</a>
+        </div>
+    </div>
+</div>
+
+<div class="card p-4 mt-4">
+    <h5>Información</h5>
+    <ul class="mb-0">
+        <li>Registra materias, profesores y comentarios</li>
+        <li>Organiza por semestre y dificultad</li>
+        <li>Sistema simple y funcional</li>
+    </ul>
+</div>
+{% endblock %}

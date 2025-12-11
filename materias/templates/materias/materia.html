@@ -1,0 +1,97 @@
+{% extends 'materias/base.html' %}
+
+{% block title %}Agregar Materia{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <div class="card border-0 shadow-sm">
+            <div class="card-header bg-white border-bottom py-3">
+                <h5 class="mb-0">
+                    <i class="bi bi-plus-circle text-primary"></i>
+                    Nueva Materia
+                </h5>
+            </div>
+            
+            <div class="card-body p-4">
+                <form method="post" id="formularioMateria" novalidate>
+                    {% csrf_token %}
+                    
+                    <div class="row g-3">
+                        <!-- Primera fila -->
+                        <div class="col-md-6">
+                            <label class="form-label">Nombre de la Materia *</label>
+                            {{ form.nombre }}
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <label class="form-label">Código *</label>
+                            {{ form.codigo }}
+                            <div class="form-text small">Ej: MAT101, PROG201</div>
+                        </div>
+                        
+                        <!-- Segunda fila -->
+                        <div class="col-md-6">
+                            <label class="form-label">Semestre *</label>
+                            {{ form.semestre }}
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <label class="form-label">Profesor *</label>
+                            {{ form.profesor }}
+                        </div>
+                        
+                        <!-- Tercera fila -->
+                        <div class="col-md-4">
+                            <label class="form-label">Créditos *</label>
+                            {{ form.creditos }}
+                        </div>
+                        
+                        <div class="col-md-4">
+                            <label class="form-label">Día *</label>
+                            {{ form.dia_clase }}
+                        </div>
+                        
+                        <div class="col-md-4">
+                            <label class="form-label">Horario *</label>
+                            {{ form.horario }}
+                        </div>
+                        
+                        <!-- Cuarta fila -->
+                        <div class="col-md-6">
+                            <label class="form-label">Dificultad *</label>
+                            {{ form.dificultad }}
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <div class="form-check mt-4">
+                                {{ form.activa }}
+                                <label class="form-check-label">Materia activa este semestre</label>
+                            </div>
+                        </div>
+                        
+                        <!-- Comentarios -->
+                        <div class="col-12">
+                            <label class="form-label">Comentarios</label>
+                            {{ form.comentarios }}
+                            <div class="form-text small">
+                                Opcional: observaciones, sugerencias o notas sobre la materia
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Botones -->
+                    <div class="d-flex justify-content-between mt-4 pt-3 border-top">
+                        <a href="{% url 'lista_materias' %}" class="btn btn-outline-secondary">
+                            <i class="bi bi-arrow-left"></i> Volver
+                        </a>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="bi bi-check-lg"></i> Guardar Materia
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
