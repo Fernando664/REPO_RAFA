@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: proyecto-materias
+    name: proyecto_materias
     env: python
     buildCommand: |
       pip install -r requirements.txt
