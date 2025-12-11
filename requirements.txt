@@ -1,7 +1,9 @@
-Django==4.2.0
-mysqlclient==2.2.0  # ¡IMPORTANTE para MySQL!
-gunicorn==20.1.0
-whitenoise==6.5.0
-psycopg2-binary==2.9.6
-dj-database-url==2.0.0
-
+antlr4-python3-runtime==4.13.2
+asgiref==3.8.1
+Django==5.2.1
+gunicorn==23.0.0
+mysqlclient==2.2.7
+packaging==25.0
+sqlparse==0.5.3
+tzdata==2025.2
+whitenoise==6.11.0
